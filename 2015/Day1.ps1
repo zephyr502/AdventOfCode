@@ -1,16 +1,21 @@
 $directions = get-content "C:\Users\ldfre\Documents\Guard Fun\floors.txt"
-$start = 0 
+$floor = 0 
+$basement = -1
+$position = 0
 foreach ($step in $directions.ToCharArray())
 { 
-    write-host $step 
     if ($step -eq "(")
     {
-        $start = $start + 1
+        $floor = $floor + 1
     }
     else 
     {
-        $start = $start - 1
+        $floor = $floor - 1
     }
-
+    $position = $position + 1
+    if ($floor -eq $basement)
+    {
+        return $position
+    }
 }
-    $start
+    $floor
